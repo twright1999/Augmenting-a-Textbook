@@ -1333,7 +1333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520bb47c46cf8624fafb307b7d1b862a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Camera: {fileID: 1518142511}
+  m_Camera: {fileID: 0}
 --- !u!4 &2082047390
 Transform:
   m_ObjectHideFlags: 0
@@ -1361,7 +1361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dea56a9eaadd1c439095de4f9a371cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SerializedLibrary: {fileID: 11400000, guid: 8a8716763b7ba424da066418ba024a1c,
+  m_SerializedLibrary: {fileID: 11400000, guid: d5b7710a927c14c0693a040baab7d8c9,
     type: 2}
   m_MaxNumberOfMovingImages: 1
   m_TrackedImagePrefab: {fileID: 5297805438473929047, guid: 8776ee7b66cc8438c87957ee5d5d3645,
