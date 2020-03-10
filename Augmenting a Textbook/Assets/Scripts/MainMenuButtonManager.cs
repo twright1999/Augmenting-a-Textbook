@@ -6,6 +6,6 @@ using UnityEngine.SceneManagement;
 public class MainMenuButtonManager : MonoBehaviour
 {
     public void LoadCameraScene() {
-        SceneManager.LoadScene("MeshDensity");
+        SceneManager.LoadScene("Camera");
     }
 }

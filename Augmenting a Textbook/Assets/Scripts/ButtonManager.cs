@@ -6,15 +6,14 @@ public class ButtonManager : MonoBehaviour
 {
 
     private GameObject mainObject;
-    private GameObject light;
 
+    [SerializeField]
+    private GameObject meshButtons;
 
     [SerializeField]
     private Material flatShading;
-
     [SerializeField]
     private Material gouraudShading;
-
     [SerializeField]
     private Material blinnPhongShading;
 
@@ -35,16 +34,16 @@ public class ButtonManager : MonoBehaviour
         mainObject.GetComponent<MeshRenderer>().material = blinnPhongShading;
     }
 
-    public void toggleLight() {
+    public void changeMesh() {
         mainObject = GameObject.Find("ARSphere");
-        light = mainObject.transform.GetChild(0).gameObject;
-        if (light.activeSelf)
+        Mesh mesh = mainObject.GetComponent<MeshFilter>().mesh;
+    }
+
+    private void Update()
+    {
+        if (GameObject.Find("ARSphere") != null)
         {
-            light.SetActive(false);
-        }
-        else
-        {
-            light.SetActive(true);
+            meshButtons.SetActive(true);
         }
     }
 }
