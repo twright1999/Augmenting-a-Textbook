@@ -18,31 +18,28 @@ public class ButtonManager : MonoBehaviour
     private Material blinnPhongShading;
 
     public void enableFlatShading() {
-        mainObject = GameObject.Find("ARSphere");
         mainObject.GetComponent<MeshRenderer>().material = flatShading;
     }
 
     public void enableGouraudShading()
     {
-        mainObject = GameObject.Find("ARSphere");
         mainObject.GetComponent<MeshRenderer>().material = gouraudShading;
     }
 
     public void enableBlinnPhongShading()
     {
-        mainObject = GameObject.Find("ARSphere");
         mainObject.GetComponent<MeshRenderer>().material = blinnPhongShading;
     }
 
     public void changeMesh() {
-        mainObject = GameObject.Find("ARSphere");
         Mesh mesh = mainObject.GetComponent<MeshFilter>().mesh;
     }
 
     private void Update()
     {
-        if (GameObject.Find("ARSphere") != null)
+        if (GameObject.Find("ARMeshObject") != null)
         {
+            mainObject = GameObject.Find("ARMeshObject");
             meshButtons.SetActive(true);
         }
     }
