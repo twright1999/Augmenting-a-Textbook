@@ -8,7 +8,7 @@ public class ButtonManager : MonoBehaviour
     private GameObject mainObject;
 
     [SerializeField]
-    private GameObject meshButtons;
+    private GameObject meshUI;
 
     [SerializeField]
     private Material flatShading;
@@ -40,7 +40,7 @@ public class ButtonManager : MonoBehaviour
         if (GameObject.Find("ARMeshObject") != null)
         {
             mainObject = GameObject.Find("ARMeshObject");
-            meshButtons.SetActive(true);
+            meshUI.SetActive(true);
         }
     }
 }
