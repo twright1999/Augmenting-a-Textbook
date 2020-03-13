@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
 
     private GameObject mainObject;
+    private GameObject shaderPanel;
+    private GameObject shaderPanelStartPos;
+    private GameObject shaderPanelActivePos;
+    private GameObject toggleShaderPanel;
 
     [SerializeField]
     private GameObject meshUI;
@@ -31,16 +36,32 @@ public class ButtonManager : MonoBehaviour
         mainObject.GetComponent<MeshRenderer>().material = blinnPhongShading;
     }
 
-    public void changeMesh() {
-        Mesh mesh = mainObject.GetComponent<MeshFilter>().mesh;
+    public void toggleShaderMenu() {
+        if (shaderPanel.transform.position == shaderPanelStartPos.transform.position)
+        {
+            shaderPanel.transform.position = shaderPanelActivePos.transform.position;
+            toggleShaderPanel.GetComponentInChildren<Text>().text = "Close";
+        }
+        else
+        {
+            shaderPanel.transform.position = shaderPanelStartPos.transform.position;
+            toggleShaderPanel.GetComponentInChildren<Text>().text = "Shaders";
+        }
     }
 
     private void Update()
     {
-        if (GameObject.Find("ARMeshObject") != null)
+        if (GameObject.Find("ARMeshObject") != null && !meshUI.activeSelf)
         {
             mainObject = GameObject.Find("ARMeshObject");
             meshUI.SetActive(true);
+
+            shaderPanel = GameObject.Find("ShaderPanel");
+            shaderPanelStartPos = GameObject.Find("ShaderPanelStartPos");
+            shaderPanelActivePos = GameObject.Find("ShaderPanelActivePos");
+            toggleShaderPanel = GameObject.Find("ToggleShaderPanel");
+
+            shaderPanel.transform.position = shaderPanelStartPos.transform.position;
         }
     }
 }
