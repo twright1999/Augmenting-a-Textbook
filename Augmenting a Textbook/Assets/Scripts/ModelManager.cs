@@ -63,7 +63,8 @@ public class ModelManager : MonoBehaviour
         }
     }
 
-    public void setSphere() {
+    public void setSphere()
+    {
         currentModel = 0;
         currentModelChange = true;
     }
