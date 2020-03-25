@@ -11,6 +11,8 @@ public class ModelManager : MonoBehaviour
 
     private GameObject mainObject;
 
+    private GameObject activeHighlight;
+
     [SerializeField]
     private Mesh[] sphereLODMeshes;
 
@@ -60,6 +62,7 @@ public class ModelManager : MonoBehaviour
                 mainObject.GetComponent<MeshFilter>().mesh = newLODMeshes[meshIndex];
                 mainObject.transform.localScale = newTransform;
             }
+            activeHighlight = GameObject.Find("MeshActive");
         }
     }
 
@@ -67,11 +70,15 @@ public class ModelManager : MonoBehaviour
     {
         currentModel = 0;
         currentModelChange = true;
+        GameObject button = GameObject.Find("SetSphereButton");
+        activeHighlight.transform.position = button.transform.position;
     }
 
     public void setTeapot()
     {
         currentModel = 1;
         currentModelChange = true;
+        GameObject button = GameObject.Find("SetTeapotButton");
+        activeHighlight.transform.position = button.transform.position;
     }
 }

@@ -21,6 +21,8 @@ public class ButtonManager : MonoBehaviour
 
     private GameObject closeButtonPos;
 
+    private GameObject activeHighlight;
+
     [SerializeField]
     private GameObject meshUI;
 
@@ -33,16 +35,22 @@ public class ButtonManager : MonoBehaviour
 
     public void enableFlatShading() {
         mainObject.GetComponent<MeshRenderer>().material = flatShading;
+        GameObject button = GameObject.Find("FlatShadingButton");
+        activeHighlight.transform.position = button.transform.position;
     }
 
     public void enableGouraudShading()
     {
         mainObject.GetComponent<MeshRenderer>().material = gouraudShading;
+        GameObject button = GameObject.Find("GouraudShadingButton");
+        activeHighlight.transform.position = button.transform.position;
     }
 
     public void enableBlinnPhongShading()
     {
         mainObject.GetComponent<MeshRenderer>().material = blinnPhongShading;
+        GameObject button = GameObject.Find("BlinnPhongShadingButton");
+        activeHighlight.transform.position = button.transform.position;
     }
 
     public void toggleShaderMenu() {
@@ -96,6 +104,8 @@ public class ButtonManager : MonoBehaviour
             toggleMeshPos = GameObject.Find("ToggleMeshPos");
 
             closeButtonPos = GameObject.Find("CloseButtonPos");
+
+            activeHighlight = GameObject.Find("ShaderActive");
 
             shaderPanel.transform.position = shaderPanelStartPos.transform.position;
             meshPanel.transform.position = meshPanelStartPos.transform.position;
