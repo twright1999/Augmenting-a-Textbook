@@ -44,7 +44,7 @@
 
             // Fragment program
             fixed4 frag (v2f i) : SV_Target {
-                fixed4 color = _Color * i.diff;
+                fixed4 color = _Color * 0.1 + i.diff*_Color;
 
                 return color;
             }
