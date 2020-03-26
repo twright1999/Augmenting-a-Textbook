@@ -46,14 +46,7 @@
                 // Specular
                 float3 viewDir = normalize(_WorldSpaceCameraPos - o.pos);
                 float3 reflectDir = reflect(-lightDir, normal);
-                float spec;
-
-                if (dot(normal, lightDir) < 0.0) {
-                   spec = float3(0.0, 0.0, 0.0); 
-                }
-                else {
-                   spec = pow(max(dot(viewDir, reflectDir), 0.0), _Shininess);
-                }
+                float spec = pow(max(dot(viewDir, reflectDir), 0.0), _Shininess);
 
                 o.spec = spec;
 
