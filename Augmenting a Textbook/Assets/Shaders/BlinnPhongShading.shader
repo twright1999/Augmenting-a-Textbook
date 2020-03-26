@@ -2,6 +2,9 @@
     Properties {
         _Color ("Main Color", Color) = (1,1,1,0.5)
         _Shininess ("Shininess", Float) = 100
+        _AmbientIntensity ("AmbientIntensity", Float) = 0.1
+        _DiffuseIntensity ("DefuseIntensity", Float) = 1
+        _SpecularIntensity ("SpecularIntensity", Float) = 1
 
     }
     SubShader {
@@ -22,6 +25,12 @@
             float4 _LightColor0;
             // Shininess
             float _Shininess;
+            // Ambeint Intensity
+            float _AmbientIntensity;
+            // Diffuse Intensity
+            float _DiffuseIntensity;
+            // Specular Intensity
+            float _SpecularIntensity;
 
             // Define a vertex to fragment struct
             struct v2f {
@@ -69,7 +78,7 @@
                 }
 
 
-                fixed4 color = _Color*0.1 + diff*_Color + spec;
+                fixed4 color = _Color*_AmbientIntensity + diff*_Color*_DiffuseIntensity + spec*_SpecularIntensity;
 
                 return color;
             }
