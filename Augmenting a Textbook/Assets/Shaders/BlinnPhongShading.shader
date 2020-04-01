@@ -49,7 +49,7 @@
                 return o;
             }
 
-            half4 frag(VertOutput i) : COLOR {
+            half4 frag(VertOutput i) : SV_TARGET {
                 // ambient
                 float3 ambient = _Color;
 

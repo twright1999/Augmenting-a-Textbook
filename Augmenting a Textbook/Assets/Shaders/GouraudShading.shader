@@ -68,7 +68,7 @@
                 return o;
             }
 
-            half4 frag(VertOutput i) : COLOR {
+            half4 frag(VertOutput i) : SV_TARGET {
 
                 return half4(i.color, 1.0);
             } 
