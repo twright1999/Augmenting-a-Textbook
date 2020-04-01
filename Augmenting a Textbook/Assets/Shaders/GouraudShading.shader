@@ -1,66 +1,80 @@
-﻿Shader "Custom/GouraudShading" {
+﻿Shader "Custom/GouraudShading"
+{
     Properties {
         _Color ("Main Color", Color) = (1,1,1,0.5)
-        _Shininess ("Shininess", Float) = 100
-
+        _Shininess ("Shininess", Float) = 12.0 
     }
+
     SubShader {
+        Tags {"RenderType" = "Opaque"}
+
         Pass {
-            Tags {"LightMode"="ForwardBase"}
+            Tags {"LightMode" = "ForwardBase"} 
 
             CGPROGRAM
 
-            // Tells the program that a vertex and fragment shader are used
             #pragma vertex vert
             #pragma fragment frag
-            // Contains common declarations and functions
+
             #include "UnityCG.cginc"
 
-            // Color of object
             fixed4 _Color;
-            // Color of light
-            float4 _LightColor0;
-            // Shininess
             float _Shininess;
 
-            // Define a vertex to fragment struct
-            struct v2f {
+            struct VertInput {
                 float4 pos : POSITION;
-                fixed4 diff : COLOR0;
-                fixed4 spec : COLOR1;
+                float3 normal : NORMAL;
             };
 
-            // Vertex program 
-            v2f vert (appdata_base v) {
-                v2f o;
-                o.pos = UnityObjectToClipPos(v.vertex);
-                half3 normal = UnityObjectToWorldNormal(v.normal);
+            struct VertOutput {
+                float4 pos : SV_POSITION;
+                float3 color : COLOR;
+            };
 
-                // Diffuse
+            VertOutput vert(VertInput i) {
+                VertOutput o;
+
+
+                o.pos = UnityObjectToClipPos(i.pos);
+
+                float3 normal = UnityObjectToWorldNormal(i.normal);
+                float3 worldPos = i.pos;
+
+                // ambient
+                float3 ambient = _Color;
+
+                // diffuse
+                float3 norm = normalize(normal);
                 float3 lightPos = float3(unity_4LightPosX0[0],unity_4LightPosY0[0],unity_4LightPosZ0[0]);
-                float3 lightDir = normalize(lightPos - o.pos);
-                half diff = max(0, dot(normal, lightDir));
+                float3 lightDir = normalize(lightPos - worldPos);
+                float3 diffuse = _Color * max(dot(norm, lightDir), 0.0);
 
-                o.diff = diff;
+                // specular
+                float3 viewDir = normalize(_WorldSpaceCameraPos - worldPos);
+                float3 reflectDir = reflect(-lightDir, norm);
+                float3 specular;
 
-                // Specular
-                float3 viewDir = normalize(_WorldSpaceCameraPos - o.pos);
-                float3 reflectDir = reflect(-lightDir, normal);
-                float spec = pow(max(dot(viewDir, reflectDir), 0.0), _Shininess);
+                if (dot(norm, lightDir) < 0.0) {
+                   specular = float3(0.0, 0.0, 0.0); 
+                }
+                else {
+                   specular = pow(max(dot(viewDir, reflectDir), 0.0), _Shininess);
+                }
 
-                o.spec = spec;
+                float3 result = ambient*0.2 + diffuse + specular;
+                
+                o.color = half4(result, 1.0);
 
                 return o;
             }
 
-            // Fragment program
-            fixed4 frag (v2f i) : COLOR {
-                fixed4 color = _Color*0.1 + i.diff*_Color + i.spec;
+            half4 frag(VertOutput i) : COLOR {
 
-                return color;
-            }
+                return half4(i.color, 1.0);
+            } 
 
             ENDCG
         }
     }
+    FallBack "Diffuse"
 }

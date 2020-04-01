@@ -1,89 +1,85 @@
-﻿Shader "Custom/BlinnPhongShading" {
+﻿Shader "Custom/BlinnPhongShading"
+{
     Properties {
         _Color ("Main Color", Color) = (1,1,1,0.5)
-        _Shininess ("Shininess", Float) = 100
         _AmbientIntensity ("AmbientIntensity", Float) = 0.1
-        _DiffuseIntensity ("DefuseIntensity", Float) = 1
-        _SpecularIntensity ("SpecularIntensity", Float) = 1
-
+        _DiffuseIntensity ("DefuseIntensity", Float) = 1.0
+        _SpecularIntensity ("SpecularIntensity", Float) = 1.0
+        _Shininess ("Shininess", Float) = 12.0 
     }
+
     SubShader {
+        Tags {"RenderType" = "Opaque"}
+
         Pass {
-            Tags {"LightMode"="ForwardBase"}
+            Tags {"LightMode" = "ForwardBase"} 
 
             CGPROGRAM
 
-            // Tells the program that a vertex and fragment shader are used
             #pragma vertex vert
             #pragma fragment frag
-            // Contains common declarations and functions
+
             #include "UnityCG.cginc"
 
-            // Color of object
             fixed4 _Color;
-            // Color of light
-            float4 _LightColor0;
-            // Shininess
-            float _Shininess;
-            // Ambeint Intensity
             float _AmbientIntensity;
-            // Diffuse Intensity
             float _DiffuseIntensity;
-            // Specular Intensity
             float _SpecularIntensity;
+            float _Shininess;
 
-            // Define a vertex to fragment struct
-            struct v2f {
+            struct VertInput {
                 float4 pos : POSITION;
                 float3 normal : NORMAL;
-                float3 lightDir : TEXCOORD0; 
             };
 
-            // Vertex program 
-            v2f vert (appdata_base v) {
-                v2f o;
+            struct VertOutput {
+                float4 pos : SV_POSITION;
+                float3 normal : NORMAL;
+                float3 worldPos : TEXCOORD0;
+            };
 
-                o.pos = UnityObjectToClipPos(v.vertex);
-                o.normal = normalize(UnityObjectToWorldNormal(v.normal));
+            VertOutput vert(VertInput i) {
+                VertOutput o;
 
-                // Diffuse
-                float3 lightPos = float3(unity_4LightPosX0[0],unity_4LightPosY0[0],unity_4LightPosZ0[0]);
-                float3 lightDir = normalize(lightPos - o.pos);
 
-                o.lightDir = lightDir;
+                o.pos = UnityObjectToClipPos(i.pos);
+                o.normal = UnityObjectToWorldNormal(i.normal);
+                o.worldPos = i.pos;
 
                 return o;
             }
 
-            // Fragment program
-            fixed4 frag (v2f i) : COLOR {
+            half4 frag(VertOutput i) : COLOR {
+                // ambient
+                float3 ambient = _Color;
 
-                float3 normal = normalize(i.normal);
-                float3 lightDir = i.lightDir;
-               
+                // diffuse
+                float3 norm = normalize(i.normal);
+                float3 lightPos = float3(unity_4LightPosX0[0],unity_4LightPosY0[0],unity_4LightPosZ0[0]);
+                float3 lightDir = normalize(lightPos - i.worldPos);
+                float3 diffuse = _Color * max(dot(norm, lightDir), 0.0);
 
-                // Diffuse
-                half diff = max(0, dot(normal, lightDir));
+                // specular
+                float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
+                float3 reflectDir = reflect(-lightDir, norm);
+                float3 specular;
 
-                // Specular
-                float3 viewDir = normalize(_WorldSpaceCameraPos - i.pos);
-                float3 reflectDir = reflect(lightDir, normal);
-                float spec;
-
-                if (dot(normal, lightDir) < 0.0) {
-                   spec = float3(0.0, 0.0, 0.0); 
+                if (dot(norm, lightDir) < 0.0) {
+                   specular = float3(0.0, 0.0, 0.0); 
                 }
                 else {
-                   spec = pow(max(dot(viewDir, reflectDir), 0.0), _Shininess);
+                   specular = pow(max(dot(viewDir, reflectDir), 0.0), _Shininess);
                 }
 
+                float3 result = ambient*_AmbientIntensity + diffuse*_DiffuseIntensity + specular*_SpecularIntensity;
+                half4 fragColor = half4(result, 1.0);
 
-                fixed4 color = _Color*_AmbientIntensity + diff*_Color*_DiffuseIntensity + spec*_SpecularIntensity;
 
-                return color;
-            }
+                return fragColor;
+            } 
 
             ENDCG
         }
     }
+    FallBack "Diffuse"
 }
