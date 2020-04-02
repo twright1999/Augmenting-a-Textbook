@@ -110,5 +110,9 @@ public class ButtonManager : MonoBehaviour
             shaderPanel.transform.position = shaderPanelStartPos.transform.position;
             meshPanel.transform.position = meshPanelStartPos.transform.position;
         }
+        else if (GameObject.Find("ARMeshObject") == null && meshUI.activeSelf)
+        {
+            meshUI.SetActive(false);
+        }
     }
 }

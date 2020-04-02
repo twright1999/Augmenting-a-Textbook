@@ -19,9 +19,19 @@ MonoBehaviour:
       m_GuidLow: 5630470895418838089
       m_GuidHigh: 18136727913089306269
     m_SerializedTextureGuid:
-      m_GuidLow: 2608715142790440348
-      m_GuidHigh: 11005530438952905483
-    m_Size: {x: 1, y: 1}
+      m_GuidLow: 1512741485617821339
+      m_GuidHigh: 5410656604157739800
+    m_Size: {x: 1, y: 0.6551724}
     m_SpecifySize: 1
-    m_Name: qrcode
+    m_Name: ARMeshRoot
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5757349357342426561
+      m_GuidHigh: 8061393825287525255
+    m_SerializedTextureGuid:
+      m_GuidLow: 8399054145756233747
+      m_GuidHigh: 2593778122500728187
+    m_Size: {x: 1, y: 0.555}
+    m_SpecifySize: 1
+    m_Name: ARShaderRoot
     m_Texture: {fileID: 0}
