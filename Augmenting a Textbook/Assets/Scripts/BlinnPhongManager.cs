@@ -15,15 +15,6 @@ public class BlinnPhongManager : MonoBehaviour
     private Slider shininessSlider;
     private Renderer mainObjectRenderer;
 
-    private void Start()
-    {
-        mainObjectRenderer = GameObject.Find("ARShaderObject").GetComponent<Renderer>();
-        ambientSlider = GameObject.Find("AmbientSlider").GetComponent<Slider>();
-        diffuseSlider = GameObject.Find("DiffuseSlider").GetComponent<Slider>();
-        specularSlider = GameObject.Find("SpecularSlider").GetComponent<Slider>();
-        shininessSlider = GameObject.Find("ShininessSlider").GetComponent<Slider>();
-    }
-
     private void Update()
     {
         if (GameObject.Find("ARShaderObject") != null && !shaderUI.activeSelf)
@@ -41,9 +32,12 @@ public class BlinnPhongManager : MonoBehaviour
             shaderUI.SetActive(false);
         }
 
-        mainObjectRenderer.material.SetFloat("_AmbientIntensity", ambientSlider.value);
-        mainObjectRenderer.material.SetFloat("_DiffuseIntensity", diffuseSlider.value);
-        mainObjectRenderer.material.SetFloat("_SpecularIntensity", specularSlider.value);
-        mainObjectRenderer.material.SetFloat("_Shininess", shininessSlider.value);
+        if (GameObject.Find("ARShaderObject") != null)
+        {
+            mainObjectRenderer.material.SetFloat("_AmbientIntensity", ambientSlider.value);
+            mainObjectRenderer.material.SetFloat("_DiffuseIntensity", diffuseSlider.value);
+            mainObjectRenderer.material.SetFloat("_SpecularIntensity", specularSlider.value);
+            mainObjectRenderer.material.SetFloat("_Shininess", shininessSlider.value);
+        }
     }
 }
