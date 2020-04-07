@@ -216,7 +216,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Point the camera at Figure 6.9 on page 176, a sphere will appear.
+  m_text: 'Point the camera at Figure 6.11 on page 177, a sphere will appear.
 
 
     To change the values used in the calculations for the shader, move the sliders
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 96055326}
-    characterCount: 174
+    characterCount: 175
     spriteCount: 0
     spaceCount: 33
     wordCount: 34
@@ -1919,6 +1919,7 @@ GameObject:
   - component: {fileID: 1495986075}
   - component: {fileID: 1495986077}
   - component: {fileID: 1495986076}
+  - component: {fileID: 1495986078}
   m_Layer: 5
   m_Name: Version
   m_TagString: Untagged
@@ -1963,7 +1964,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: v 0.1
+  m_text: 'version
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -2032,10 +2035,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1495986076}
-    characterCount: 5
+    characterCount: 8
     spriteCount: 0
     spaceCount: 1
-    wordCount: 3
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -2063,6 +2066,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495986074}
   m_CullTransparentMesh: 0
+--- !u!114 &1495986078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495986074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124846cefae614034a76a79eac98854f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1888526690
 GameObject:
   m_ObjectHideFlags: 0
