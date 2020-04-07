@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ModelManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class ModelManager : MonoBehaviour
     private Mesh[] teapotLODMeshes;
 
     private float LODValue;
+    private TextMeshProUGUI LODValueText;
     private Slider LODSlider;
 
     void Update()
@@ -32,6 +34,8 @@ public class ModelManager : MonoBehaviour
         if (LODSlider == null && GameObject.Find("LODSlider") != null)
         {
             LODSlider = GameObject.Find("LODSlider").GetComponent<Slider>();
+            LODValueText = GameObject.Find("LODValueText").GetComponent<TextMeshProUGUI>();
+            LODValueText.text = getLODPercent(mainObject.GetComponent<MeshFilter>().mesh);
         }
         else if (LODSlider != null)
         {
@@ -59,10 +63,27 @@ public class ModelManager : MonoBehaviour
                         break;
                 }
                 int meshIndex = Mathf.RoundToInt(LODValue * (newLODMeshes.Length - 1));
-                mainObject.GetComponent<MeshFilter>().mesh = newLODMeshes[meshIndex];
-                mainObject.transform.localScale = newTransform;
+
+                if (mainObject.GetComponent<MeshFilter>().mesh != newLODMeshes[meshIndex])
+                {
+                    mainObject.GetComponent<MeshFilter>().mesh = newLODMeshes[meshIndex];
+                    mainObject.transform.localScale = newTransform;
+
+                    LODValueText.text = getLODPercent(newLODMeshes[meshIndex]);
+                }
             }
             activeHighlight = GameObject.Find("MeshActive");
+        }
+    }
+
+    private string getLODPercent(Mesh mesh) {
+        if (mesh.name.Contains("default"))
+        {
+            return "100%";
+        }
+        else
+        {
+            return mesh.name;
         }
     }
 

@@ -8,18 +8,10 @@ public class ButtonManager : MonoBehaviour
 
     private GameObject mainObject;
 
-    private GameObject shaderPanel;
-    private GameObject shaderPanelStartPos;
-    private GameObject shaderPanelActivePos;
-    private GameObject toggleShaderPanel;
-
-    private GameObject meshPanel;
-    private GameObject meshPanelStartPos;
-    private GameObject meshPanelActivePos;
-    private GameObject toggleMeshPanel;
-    private GameObject toggleMeshPos;
-
-    private GameObject closeButtonPos;
+    private GameObject toolPanel;
+    private GameObject toolPanelStartPos;
+    private GameObject toolPanelActivePos;
+    private GameObject toggleToolPanel;
 
     private GameObject activeHighlight;
 
@@ -53,35 +45,16 @@ public class ButtonManager : MonoBehaviour
         activeHighlight.transform.position = button.transform.position;
     }
 
-    public void toggleShaderMenu() {
-        if (shaderPanel.transform.position == shaderPanelStartPos.transform.position)
+    public void toggleToolMenu() {
+        if (toolPanel.transform.position == toolPanelStartPos.transform.position)
         {
-            toggleMeshPanel.SetActive(false);
-            shaderPanel.transform.position = shaderPanelActivePos.transform.position;
-            toggleShaderPanel.GetComponentInChildren<Text>().text = "Close";
+            toolPanel.transform.position = toolPanelActivePos.transform.position;
+            toggleToolPanel.GetComponentInChildren<Text>().text = "Close";
         }
         else
         {
-            toggleMeshPanel.SetActive(true);
-            shaderPanel.transform.position = shaderPanelStartPos.transform.position;
-            toggleShaderPanel.GetComponentInChildren<Text>().text = "Shaders";
-        }
-    }
-
-    public void toggleMeshMenu() {
-        if (meshPanel.transform.position == meshPanelStartPos.transform.position)
-        {
-            toggleShaderPanel.SetActive(false);
-            meshPanel.transform.position = meshPanelActivePos.transform.position;
-            toggleMeshPanel.transform.position = closeButtonPos.transform.position;
-            toggleMeshPanel.GetComponentInChildren<Text>().text = "Close";
-        }
-        else
-        {
-            toggleShaderPanel.SetActive(true);
-            meshPanel.transform.position = meshPanelStartPos.transform.position;
-            toggleMeshPanel.transform.position = toggleMeshPos.transform.position;
-            toggleMeshPanel.GetComponentInChildren<Text>().text = "Meshes";
+            toolPanel.transform.position = toolPanelStartPos.transform.position;
+            toggleToolPanel.GetComponentInChildren<Text>().text = "Tools";
         }
     }
 
@@ -92,23 +65,14 @@ public class ButtonManager : MonoBehaviour
             mainObject = GameObject.Find("ARMeshObject");
             meshUI.SetActive(true);
 
-            shaderPanel = GameObject.Find("ShaderPanel");
-            shaderPanelStartPos = GameObject.Find("ShaderPanelStartPos");
-            shaderPanelActivePos = GameObject.Find("ShaderPanelActivePos");
-            toggleShaderPanel = GameObject.Find("ToggleShaderPanel");
-
-            meshPanel = GameObject.Find("MeshPanel");
-            meshPanelStartPos = GameObject.Find("MeshPanelStartPos");
-            meshPanelActivePos = GameObject.Find("MeshPanelActivePos");
-            toggleMeshPanel = GameObject.Find("ToggleMeshPanel");
-            toggleMeshPos = GameObject.Find("ToggleMeshPos");
-
-            closeButtonPos = GameObject.Find("CloseButtonPos");
+            toolPanel = GameObject.Find("ToolPanel");
+            toolPanelStartPos = GameObject.Find("ToolPanelStartPos");
+            toolPanelActivePos = GameObject.Find("ToolPanelActivePos");
+            toggleToolPanel = GameObject.Find("ToggleToolPanel");
 
             activeHighlight = GameObject.Find("ShaderActive");
 
-            shaderPanel.transform.position = shaderPanelStartPos.transform.position;
-            meshPanel.transform.position = meshPanelStartPos.transform.position;
+            toolPanel.transform.position = toolPanelStartPos.transform.position;
         }
         else if (GameObject.Find("ARMeshObject") == null && meshUI.activeSelf)
         {
