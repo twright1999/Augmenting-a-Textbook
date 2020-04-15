@@ -44,7 +44,7 @@
 
                 o.pos = UnityObjectToClipPos(i.pos);
                 o.normal = UnityObjectToWorldNormal(i.normal);
-                o.worldPos = i.pos;
+                o.worldPos = mul(unity_ObjectToWorld, i.pos);
 
                 return o;
             }

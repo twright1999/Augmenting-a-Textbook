@@ -38,7 +38,7 @@
                 o.pos = UnityObjectToClipPos(i.pos);
 
                 float3 normal = UnityObjectToWorldNormal(i.normal);
-                float3 worldPos = i.pos;
+                float3 worldPos = mul(unity_ObjectToWorld, i.pos);
 
                 // ambient
                 float3 ambient = _Color;

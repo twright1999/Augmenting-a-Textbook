@@ -55,7 +55,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Tex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _AmbientPow: 0.5
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -63,6 +68,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _Glow: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -78,4 +84,11 @@ Material:
     - _Color: {r: 0, g: 0.69411767, b: 1, a: 1}
     - _Diffuse: {r: 1, g: 1, b: 1, a: 0.5}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EyePosition: {r: 0, g: 0, b: 0, a: 0}
+    - _Ka: {r: 1, g: 1, b: 1, a: 1}
+    - _Kd: {r: 1, g: 1, b: 1, a: 1}
+    - _Ks: {r: 1, g: 1, b: 1, a: 1}
+    - _LightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _LightPosition: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TintColor: {r: 1, g: 1, b: 1, a: 1}
