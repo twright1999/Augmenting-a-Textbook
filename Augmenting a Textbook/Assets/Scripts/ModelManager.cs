@@ -50,11 +50,11 @@ public class ModelManager : MonoBehaviour
                 switch (currentModel) {
                     case 0:
                         newLODMeshes = sphereLODMeshes;
-                        newTransform = new Vector3(0.4f, 0.4f, 0.4f);
+                        newTransform = new Vector3(1f, 1f, 1f);
                         break;
                     case 1:
                         newLODMeshes = teapotLODMeshes;
-                        newTransform = new Vector3(0.2f, 0.2f, 0.2f);
+                        newTransform = new Vector3(0.5f, 0.5f, 0.5f);
                         break;
                     default:
                         Debug.LogWarning("Unknown model index, sphere loaded");

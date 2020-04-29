@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonManager : MonoBehaviour
+public class ShaderManager : MonoBehaviour
 {
 
     private GameObject mainObject;

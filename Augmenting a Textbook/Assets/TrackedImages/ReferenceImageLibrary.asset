@@ -21,7 +21,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 1512741485617821339
       m_GuidHigh: 5410656604157739800
-    m_Size: {x: 1, y: 0.6551724}
+    m_Size: {x: 0.12, y: 0.07862069}
     m_SpecifySize: 1
     m_Name: ARMeshRoot
     m_Texture: {fileID: 0}
@@ -31,7 +31,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 17595941542309498605
       m_GuidHigh: 9694750879712638587
-    m_Size: {x: 1, y: 0.5270936}
+    m_Size: {x: 0.11, y: 0.057980295}
     m_SpecifySize: 1
     m_Name: ARShaderRoot
     m_Texture: {fileID: 0}
