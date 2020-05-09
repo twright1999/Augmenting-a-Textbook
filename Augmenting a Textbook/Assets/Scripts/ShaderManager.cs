@@ -83,7 +83,6 @@ public class ShaderManager : MonoBehaviour
             activeHighlight = GameObject.Find("ShaderActive");
 
             scrollbar = GameObject.Find("Scrollbar");
-            scrollbar.SetActive(false);
 
             toolPanel.transform.position = toolPanelStartPos.transform.position;
         }

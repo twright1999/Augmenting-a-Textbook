@@ -17,22 +17,29 @@ public class ScrollManager : MonoBehaviour
     {
         if (GameObject.Find("ToolPanel") != null && !done)
         {
+            Debug.Log("START");
             toolPanel = GameObject.Find("ToolPanel").GetComponent<RectTransform>();
-            scrollbar = GameObject.Find("Scrollbar");
             toggleToolPanel = GameObject.Find("ToggleToolPanel").GetComponent<RectTransform>();
             toggleToolPanelDefault = GameObject.Find("ToggleToolPanelDefault").GetComponent<RectTransform>();
 
+            scrollbar = GameObject.Find("Scrollbar");
+            scrollbar.SetActive(false);
             done = true;
         }
         canvasHeight = GameObject.Find("Canvas").GetComponent<RectTransform>().sizeDelta.y;
-        if (toolPanel.sizeDelta.y < canvasHeight)
-        {
-            scrollbar.SetActive(false);
-        }
-        else
-        {
-            scrollbar.SetActive(true);
-        }
+        //if (done)
+        //{
+        //    if (toolPanel.sizeDelta.y < canvasHeight)
+        //    {
+        //        scrollbar.SetActive(false);
+        //    }
+        //    else
+        //    {
+        //        scrollbar.SetActive(true);
+        //    }
+        //}
+
+        
     }
 
     public void changeButtonPos()
