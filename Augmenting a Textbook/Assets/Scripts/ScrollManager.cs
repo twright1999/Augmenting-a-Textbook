@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ScrollManager : MonoBehaviour
 {
     private RectTransform toolPanel;
-    private RectTransform toggleToolPanel;
+    private GameObject toggleToolPanel;
     private RectTransform toggleToolPanelDefault;
 
     private bool done = false;
@@ -17,29 +17,32 @@ public class ScrollManager : MonoBehaviour
     {
         if (GameObject.Find("ToolPanel") != null && !done)
         {
-            Debug.Log("START");
             toolPanel = GameObject.Find("ToolPanel").GetComponent<RectTransform>();
-            toggleToolPanel = GameObject.Find("ToggleToolPanel").GetComponent<RectTransform>();
+            toggleToolPanel = GameObject.Find("ToggleToolPanel");
             toggleToolPanelDefault = GameObject.Find("ToggleToolPanelDefault").GetComponent<RectTransform>();
 
             scrollbar = GameObject.Find("Scrollbar");
-            scrollbar.SetActive(false);
             done = true;
         }
         canvasHeight = GameObject.Find("Canvas").GetComponent<RectTransform>().sizeDelta.y;
-        //if (done)
-        //{
-        //    if (toolPanel.sizeDelta.y < canvasHeight)
-        //    {
-        //        scrollbar.SetActive(false);
-        //    }
-        //    else
-        //    {
-        //        scrollbar.SetActive(true);
-        //    }
-        //}
-
-        
+        if (done)
+        {
+            if (toolPanel.sizeDelta.y < canvasHeight)
+            {
+                scrollbar.SetActive(false);
+            }
+            else
+            {
+                if (toggleToolPanel.GetComponentInChildren<Text>().text == "Close")
+                {
+                    scrollbar.SetActive(true);
+                }
+                else
+                {
+                    scrollbar.SetActive(false);
+                }
+            }
+        }
     }
 
     public void changeButtonPos()
@@ -57,7 +60,7 @@ public class ScrollManager : MonoBehaviour
         newPosToggle.y = toggleToolPanelDefault.position.y + changeYPos;
 
         toolPanel.position = newPosPanel;
-        toggleToolPanel.position = newPosToggle;
+        toggleToolPanel.GetComponent<RectTransform>().position = newPosToggle;
         scrollbar.GetComponent<RectTransform>().position = scrollPosBefore;
     }
 }

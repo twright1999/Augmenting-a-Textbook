@@ -57,7 +57,6 @@ public class ShaderManager : MonoBehaviour
         {
             toolPanel.transform.position = toolPanelActivePos.transform.position;
             toggleToolPanel.GetComponentInChildren<Text>().text = "Close";
-            scrollbar.SetActive(true);
         }
         else
         {
