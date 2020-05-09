@@ -15,6 +15,8 @@ public class ShaderManager : MonoBehaviour
 
     private GameObject activeHighlight;
 
+    private GameObject scrollbar;
+
     [SerializeField]
     private GameObject meshUI;
 
@@ -24,6 +26,11 @@ public class ShaderManager : MonoBehaviour
     private Material gouraudShading;
     [SerializeField]
     private Material blinnPhongShading;
+
+    private void Start()
+    {
+        
+    }
 
     public void enableFlatShading() {
         mainObject.GetComponent<MeshRenderer>().material = flatShading;
@@ -50,11 +57,13 @@ public class ShaderManager : MonoBehaviour
         {
             toolPanel.transform.position = toolPanelActivePos.transform.position;
             toggleToolPanel.GetComponentInChildren<Text>().text = "Close";
+            scrollbar.SetActive(true);
         }
         else
         {
             toolPanel.transform.position = toolPanelStartPos.transform.position;
             toggleToolPanel.GetComponentInChildren<Text>().text = "Tools";
+            scrollbar.SetActive(false);
         }
     }
 
@@ -65,12 +74,16 @@ public class ShaderManager : MonoBehaviour
             mainObject = GameObject.Find("ARMeshObject");
             meshUI.SetActive(true);
 
+
             toolPanel = GameObject.Find("ToolPanel");
             toolPanelStartPos = GameObject.Find("ToolPanelStartPos");
             toolPanelActivePos = GameObject.Find("ToolPanelActivePos");
             toggleToolPanel = GameObject.Find("ToggleToolPanel");
 
             activeHighlight = GameObject.Find("ShaderActive");
+
+            scrollbar = GameObject.Find("Scrollbar");
+            scrollbar.SetActive(false);
 
             toolPanel.transform.position = toolPanelStartPos.transform.position;
         }
