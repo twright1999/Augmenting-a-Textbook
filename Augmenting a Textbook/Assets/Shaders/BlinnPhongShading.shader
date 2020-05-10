@@ -55,23 +55,20 @@
 
                 // diffuse
                 float3 norm = normalize(i.normal);
-                float3 lightPos = float3(unity_4LightPosX0[0],unity_4LightPosY0[0],unity_4LightPosZ0[0]);
+                float3 lightPos = float3(unity_4LightPosX0[0],
+                    unity_4LightPosY0[0],unity_4LightPosZ0[0]);
                 float3 lightDir = normalize(lightPos - i.worldPos);
                 float3 diffuse = _Color * max(dot(norm, lightDir), 0.0);
 
                 // specular
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
-                float3 reflectDir = reflect(-lightDir, norm);
+                float3 H = normalize((lightDir + viewDir)/2);
                 float3 specular;
 
-                if (dot(norm, lightDir) < 0.0) {
-                   specular = float3(0.0, 0.0, 0.0); 
-                }
-                else {
-                   specular = pow(max(dot(viewDir, reflectDir), 0.0), _Shininess);
-                }
+                specular = pow(max(dot(norm, H), 0.0), _Shininess);
 
-                float3 result = ambient*_AmbientIntensity + diffuse*_DiffuseIntensity + specular*_SpecularIntensity;
+                float3 result = ambient*_AmbientIntensity + 
+                    diffuse*_DiffuseIntensity + specular*_SpecularIntensity;
                 half4 fragColor = half4(result, 1.0);
 
 

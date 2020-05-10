@@ -45,7 +45,8 @@
 
                 // diffuse
                 float3 norm = normalize(normal);
-                float3 lightPos = float3(unity_4LightPosX0[0],unity_4LightPosY0[0],unity_4LightPosZ0[0]);
+                float3 lightPos = float3(unity_4LightPosX0[0],
+                    unity_4LightPosY0[0],unity_4LightPosZ0[0]);
                 float3 lightDir = normalize(lightPos - worldPos);
                 float3 diffuse = _Color * max(dot(norm, lightDir), 0.0);
 
@@ -58,7 +59,8 @@
                    specular = float3(0.0, 0.0, 0.0); 
                 }
                 else {
-                   specular = pow(max(dot(viewDir, reflectDir), 0.0), _Shininess);
+                   specular = pow(max(dot(viewDir, reflectDir), 0.0),
+                        _Shininess);
                 }
 
                 float3 result = ambient*0.2 + diffuse + specular;
