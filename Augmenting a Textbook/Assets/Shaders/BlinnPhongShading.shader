@@ -63,9 +63,8 @@
                 // specular
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
                 float3 H = normalize((lightDir + viewDir)/2);
-                float3 specular;
 
-                specular = pow(max(dot(norm, H), 0.0), _Shininess);
+                float3 specular = pow(max(dot(norm, H), 0.0), _Shininess);
 
                 float3 result = ambient*_AmbientIntensity + 
                     diffuse*_DiffuseIntensity + specular*_SpecularIntensity;
