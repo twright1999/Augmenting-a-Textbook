@@ -2,9 +2,6 @@
 {
     Properties {
         _Color ("Main Color", Color) = (1,1,1,0.5)
-        _AmbientIntensity ("AmbientIntensity", Float) = 0.1
-        _DiffuseIntensity ("DefuseIntensity", Float) = 1.0
-        _SpecularIntensity ("SpecularIntensity", Float) = 1.0
         _Shininess ("Shininess", Float) = 12.0 
     }
 
@@ -66,8 +63,7 @@
 
                 float3 specular = pow(max(dot(norm, H), 0.0), _Shininess);
 
-                float3 result = ambient*_AmbientIntensity + 
-                    diffuse*_DiffuseIntensity + specular*_SpecularIntensity;
+                float3 result = ambient*0.2 + diffuse + specular;
                 half4 fragColor = half4(result, 1.0);
 
 
